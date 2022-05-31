@@ -12,6 +12,13 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
+    //생성자 함수 사용 예제
+    function Vue(){
+        this.logText = function () {
+            console.log('hello');
+        }
+    }
+
     let vm = new Vue({ // Vue 인스턴스 생성
         el: '#app', // id가 app인
         data: {
@@ -26,6 +33,7 @@
             message: ' 이 페이지는' + new Date() + '에 로드 되었습니다.'
         }
     });
+
 </script>
 </body>
 </html>
