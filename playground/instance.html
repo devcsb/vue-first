@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app"></div>
+<div id="app2"><span v-bind:title="message">v-bind</span> </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({ // Vue 인스턴스 생성
+        el: '#app', // id가 app인
+        data: {
+            message: 'vue 테스트'
+        }
+    });
+
+// 엘리먼트 속성 바인딩 예제
+    let app2 = new Vue({
+        el:'#app2',
+        data: {
+            message: ' 이 페이지는' + new Date() + '에 로드 되었습니다.'
+        }
+    });
+</script>
+</body>
+</html>
