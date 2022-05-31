@@ -19,7 +19,7 @@
         }
     }
 
-    let vm = new Vue({ // Vue 인스턴스 생성
+    let vm = new Vue({ // Vue 인스턴스 생성.
         el: '#app', // id가 app인
         data: {
             message: 'vue 테스트'
@@ -34,6 +34,14 @@
         }
     });
 
+    var vm = new Vue({ // 생성자 new Vue()안에 객체 리터럴 형태로 속성 추가.
+        el: '#app',
+        data: {
+            message: 'hi'
+        },
+        methods: {
+        }
+    })
 </script>
 </body>
 </html>
