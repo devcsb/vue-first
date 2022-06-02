@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--상위 컴포넌트(app)의 템플릿-->
+<div id="app">
+    <p>{{ num }}</p>
+    <!--    <app-header v-on:하위 컴포넌트에서 발생한 이벤트 이름="상위 컴포넌트의 메서드 이름"></app-header>-->
+    <app-header v-on:pass="logText"></app-header>  <!-- pass 이벤트가 아래에서 올라왔을 때, 상위의 logText 메서드를 실행 -->
+    <app-content v-on:content-event="numPlus"></app-content> <!--이벤트 이름에는  항상 kebab-case를 사용한다. -->
+    <app-content2 v-on:decrease="decreaseNum"></app-content2>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //   하위 컴포넌트의 내용
+    let appHeader = {
+        template: '<button v-on:click="passEvent">click me</button>',
+        methods: {
+            passEvent: function () { // 메서드 정의
+                this.$emit('pass'); // this.$emit('이벤트 명');
+            }
+        }
+    }
+
+    let appContent = {
+        template: '<button v-on:click="addNumber">add</button>',
+        methods: {
+            addNumber: function () {
+                /* DOM 템플릿의 v-on 이벤트리스너는 항상 자동으로 소문자 변환되므로, 이벤트 이름은 kebab-case를 사용하자!*/
+                this.$emit('content-event');
+            }
+        }
+    }
+
+    let appContent2 = {
+        template: '<button v-on:click="decreaseNumber">decrease</button>',
+        methods: {
+            decreaseNumber: function () {
+                this.$emit('decrease');
+            }
+        }
+    }
+
+    // root 컴포넌트 정의
+    new Vue({
+        el: '#app',
+        components: { // 하위 컴포넌트 정의
+            'app-header': appHeader,
+            'app-content': appContent,
+            'app-content2': appContent2
+        },
+        methods: {
+            logText: function () {
+                console.log('pass 이벤트를 수신하는 root컴포넌트의 logText 메서드 입니다.');
+            },
+            numPlus: function () {
+                this.num++;
+                console.log('content-event 이벤트를 수신하는 root 컴포넌트의 numPlus 메서드입니다.');
+                console.log(this.num);
+            },
+            decreaseNum: function (){
+                this.num --;
+                console.log('decrease 이벤트를 수신하는 root 컴포넌트의 decreaseNum 메서드입니다.');
+                console.log(this.num);
+            }
+
+        },
+        data: {
+            num: 10
+        }
+    });
+
+
+</script>
+</body>
+</html>
