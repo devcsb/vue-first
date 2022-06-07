@@ -16,7 +16,6 @@
     <app-content2 v-on:decrease="decreaseNum"></app-content2>
 </div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
     //   하위 컴포넌트의 내용
@@ -49,7 +48,7 @@
     }
 
     // root 컴포넌트 정의
-    new Vue({
+    let vm = new Vue({
         el: '#app',
         components: { // 하위 컴포넌트 정의
             'app-header': appHeader,
@@ -63,7 +62,7 @@
             numPlus: function () {
                 this.num++;
                 console.log('content-event 이벤트를 수신하는 root 컴포넌트의 numPlus 메서드입니다.');
-                console.log(this.num);
+                console.log(this.num);  // 메서드의 속성 함수 안에서 this는 해당 데이터의 num을 바라본다.
             },
             decreaseNum: function (){
                 this.num --;
@@ -76,7 +75,6 @@
             num: 10
         }
     });
-
 
 </script>
 </body>
