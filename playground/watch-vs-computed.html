@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    {{ num }}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            num: 10
+        },
+        // data에 할당된 값들 사이의 종속관계를 자동으로 세팅하고자 할때는 computed로 구현하는것이 좋다
+        // computed로 구현가능한 것이라면 watch가 아니라 computed로 구현하는것이 대게의 경우 옳다.
+        computed: { // 반응형 getter 라고 이해하자.
+            doubleNum: function () { // doubleNum이라는 새 프로퍼티를 생성하고, getter로서 익명함수가 정의됨.
+                return this.num * 2;
+            }
+        },
+        // watch : 특정 프로퍼티의 변경시점에 특정 액션(call api, push route …)을 취하고자 할때 적합하다. 매번 실행되기 부단스러운 무거운 로직들을 담는다.
+        watch: { // 반응형 콜백이라고 이해하자.
+            num: function (newValue, oldValue) { // 여기서 num은 단순히 감시 대상임을 지정
+                this.fetchUserByNumber(newValue);
+            }
+        },
+        methods: {
+            fetchUserByNumber: function (num) {
+                console.log(num);
+                // axios.get(num);
+            }
+        }
+    });
+</script>
+</body>
+</html>
