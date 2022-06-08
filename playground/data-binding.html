@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <p v-bind:id="uuid" v-bind:class="name">{{ num }}</p>
+<!--    <p id="abc1234" class="text-blue">{{ num }}</p>-->  <!-- 위 코드는 이런 식으로 html을 그린다.-->
+    <p>{{ doubleNum }}</p>
+    <div v-if="isLoading"> <!-- if문에서 거짓 조건이면 속성 자체를 html에 반영하지 않음-->
+        Loading...
+    </div>
+    <div v-else>
+        test user has been logged in
+    </div>
+    <div v-show="isLoading"> <!--v-show는 값이 바인딩데이터 값이 false면 style 속성으로 감추기만 한다.-->
+        Loading...
+    </div>
+    <div>
+    <input v-model="message" placeholder="edit me" type="text"/>
+    <p>Message is: {{ message }}</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            num: 10,
+            uuid: 'abc1234',
+            name: 'text-blue',
+            isLoading: false,
+            message: ''
+        },
+        computed: { // 원본 값을 계산하여 리턴하는 속성
+            doubleNum: function () {
+                return this.num * 2;
+            }
+        }
+    });
+</script>
+</body>
+</html>
