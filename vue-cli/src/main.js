@@ -17,7 +17,7 @@ new Vue({
 
 }).$mount('#app')
 
-//$mount('#app') 대신 아래와 같이 el 로 정의하면 같은 동작을 한다.
+// .$mount('#app') 대신 아래와 같이 el 로 정의하면 같은 동작을 한다.
 // new Vue({
 //   el: '#app',
 //   render: h => h(App)
