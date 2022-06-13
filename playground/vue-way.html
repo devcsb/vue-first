@@ -24,6 +24,7 @@
     (function () { // 즉시 실행 함수
 
         function init() {
+        // Object.defineProperty(대상 객체, 정의할 속성의 이름, 새로 정의할 속성)
             Object.defineProperty(viewModel, 'str', {
                 // 속성에 접근했을 때의 동작을 정의
                 get: function () {
